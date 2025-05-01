@@ -1,4 +1,8 @@
 terraform {
+  backend "http" {
+    # The address will be provided by GitLab CI
+  }
+
   required_providers {
     oci = {
       source  = "oracle/oci"
