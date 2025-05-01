@@ -1,20 +1,11 @@
 variable "name" {
   type    = string
-  default = "docker-remote"
+  default = "k3s-remote"
 }
-
-/*
-Available flex shapes:
-"VM.Optimized3.Flex"  # Intel Ice Lake
-"VM.Standard3.Flex"   # Intel Ice Lake
-"VM.Standard.A1.Flex" # Ampere Altra
-"VM.Standard.E3.Flex" # AMD Rome
-"VM.Standard.E4.Flex" # AMD Milan
-*/
 
 variable "shape" {
   type    = string
-  default = "VM.Standard.E4.Flex"
+  default = "VM.Standard.A1.Flex"
 }
 
 variable "how_many_nodes" {
@@ -29,10 +20,33 @@ variable "availability_domain" {
 
 variable "ocpus_per_node" {
   type    = number
-  default = 2
+  default = 4
 }
 
 variable "memory_in_gbs_per_node" {
   type    = number
-  default = 16
+  default = 24
+}
+
+/*
+ * Hashicorp Vault credentials
+ */
+
+variable "vault_token" {
+  type = string
+  sensitive = true
+}
+
+variable "vault_address" {
+  type = string
+  sensitive = true
+}
+
+/*
+ * Load secrets from Hashicorp Vault
+ */
+
+data "vault_kv_secret_v2" "oracle-cloud_secrets" {
+  mount = "kv"
+  name = "oracle-cloud"
 }
