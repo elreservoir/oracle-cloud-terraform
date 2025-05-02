@@ -12,7 +12,7 @@ resource "vault_kv_secret_v2" "add_secrets" {
         },
         {
             for idx, inst in tolist(values(oci_core_instance._)) :
-            "IP_ADDRESS_${idx + 1}" => inst.public_ip
+            "PUBLIC_IP_${idx + 1}" => inst.public_ip
         }
     )
   )

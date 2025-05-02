@@ -48,5 +48,5 @@ variable "vault_address" {
 
 data "vault_kv_secret_v2" "oracle-cloud_secrets" {
   mount = "kv"
-  name = "oracle-cloud"
+  name = "oracle-cloud/provided"
 }
