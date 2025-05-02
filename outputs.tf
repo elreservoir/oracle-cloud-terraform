@@ -11,7 +11,7 @@ resource "vault_kv_secret_v2" "add_secrets" {
             SSH_PUBLIC_KEY = tls_private_key.ssh.public_key_openssh
         },
         {
-            for idx, inst in sort(oci_core_instance._) :
+            for idx, inst in tolist(values(oci_core_instance._)) :
             "IP_ADDRESS_${idx + 1}" => inst.public_ip
         }
     )
