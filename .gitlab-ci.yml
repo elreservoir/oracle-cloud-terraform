@@ -1,7 +1,7 @@
 stages:
   - validate
   - apply
-  - destory
+  - destroy
 
 variables:
   TF_ADDRESS: https://gitlab.elreservoir.com/api/v4/projects/${CI_PROJECT_ID}/terraform/state/default
@@ -30,7 +30,7 @@ tofu-plan-apply:
   only:
     refs:
       - main
-  needs: ["terraform-test"]
+  needs: ["tofu-test"]
   image:
     name: ghcr.io/opentofu/opentofu:1.9.1
     entrypoint: [""]
