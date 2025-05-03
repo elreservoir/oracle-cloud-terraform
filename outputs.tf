@@ -1,3 +1,8 @@
+/*
+ * Store secrets to Hashicorp Vault
+ */
+
+
 resource "vault_kv_secret_v2" "add_secrets" {
   mount = "kv"
   name  = "oracle-cloud/generated"
