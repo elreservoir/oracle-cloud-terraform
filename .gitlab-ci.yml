@@ -3,5 +3,5 @@ include:
   ref: 'main'
   file: '/tofu-pipeline.yml'
 
-#variables:
-#  TF_ROOT: "."
+variables:
+  TF_ROOT: "."
